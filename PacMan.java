@@ -1,10 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class PacMan extends JPanel implements ActionListener, KeyListener{
@@ -141,21 +138,18 @@ public class PacMan extends JPanel implements ActionListener, KeyListener{
 
 
         //load images
-        try {
-            wallImage = ImageIO.read(getClass().getResourceAsStream("/resources/wall.png"));
-            blueGhostImage = ImageIO.read(getClass().getResourceAsStream("/resources/blueGhost.png"));
-            orangeGhostImage = ImageIO.read(getClass().getResourceAsStream("/resources/orangeGhost.png"));
-            pinkGhostImage = ImageIO.read(getClass().getResourceAsStream("/resources/pinkGhost.png"));
-            redGhostImage = ImageIO.read(getClass().getResourceAsStream("/resources/redGhost.png"));
-            pacmanUpImage = ImageIO.read(getClass().getResourceAsStream("/resources/pacmanUp.png"));
-            pacmanDownImage = ImageIO.read(getClass().getResourceAsStream("/resources/pacmanDown.png"));
-            pacmanLeftImage = ImageIO.read(getClass().getResourceAsStream("/resources/pacmanLeft.png"));
-            pacmanRightImage = ImageIO.read(getClass().getResourceAsStream("/resources/pacmanRight.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        wallImage = new ImageIcon(getClass().getResource("./wall.png")).getImage();
+        blueGhostImage = new ImageIcon(getClass().getResource("./blueGhost.png")).getImage();
+        orangeGhostImage = new ImageIcon(getClass().getResource("./orangeGhost.png")).getImage();
+        pinkGhostImage = new ImageIcon(getClass().getResource("./pinkGhost.png")).getImage();
+        redGhostImage = new ImageIcon(getClass().getResource("./redGhost.png")).getImage();
 
+        pacmanUpImage = new ImageIcon(getClass().getResource("./pacmanUp.png")).getImage();
+        pacmanDownImage = new ImageIcon(getClass().getResource("./pacmanDown.png")).getImage();
+        pacmanLeftImage = new ImageIcon(getClass().getResource("./pacmanLeft.png")).getImage();
+        pacmanRightImage = new ImageIcon(getClass().getResource("./pacmanRight.png")).getImage();
 
+ 
         loadMap();
         for(Block ghost : ghosts){
             char newDirection = directions[random.nextInt(4)];
@@ -237,7 +231,7 @@ public void draw(Graphics g){
         g.drawString("Game Over: " + String.valueOf(score), tileSize/2, tileSize/2);
     }
     else {
-        g.drawString("x" + String.valueOf(lives) + " Score:" + String.valueOf(score), tileSize/2, tileSize/2);
+        g.drawString("x" + String.valueOf(lives) + " Score: " + String.valueOf(score), tileSize/2, tileSize/2);
     }
 
 }
